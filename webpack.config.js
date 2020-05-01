@@ -12,9 +12,13 @@ module.exports = {
         rules: [
             {test: /\.jsx$/, use: {loader: 'babel-loader'}},
             {test: /\.js$/, use: {loader: 'babel-loader'}},
-            {test: /\.css$/, loader: 'css-loader!style-loader'},
-            {test: /\.scss$/, loader: 'sass-loader'}
+            {test: /\.css$/i, loader: 'style-loader!css-loader'},
+            {test: /\.scss$/i, use: [{loader: 'style-loader'},{loader: 'css-loader'},{loader: 'sass-loader'}]},
+            {test: /\.svg$/, use: [{loader: 'react-svg-loader', options: {JSX: true}}]}
         ]
+    },
+    resolve:{
+        extensions: ['.js','.jsx','.scss']
     },
     plugins:[
         new htmlWebpackPlugin({
