@@ -1,30 +1,31 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
+import './Filter.styles.scss';
 
-const Filter = () => {
-    const maxPrice = useRef(null);
+const Filter = ({filterByRange}) => {
+ 
     const [maxRange, setMaxRange] = useState(100000);
     const [minRange, setMinRange] = useState(0);
 
     const updateMaxRange = (e) => {
-        setMaxRange(e.target?.value);
+        setMaxRange(e.target.value);
     }
     const updateMinRange = (e) => {
-        setMinRange(e.target?.value);
+        setMinRange(e.target.value);
     }
     return (
         <div className="filter-section">
             <h3>Filters</h3>
             <div className="filter-type">
                 <label>Min Price</label>
-                <input type="range" min="1" max="100000" value={minRange} ref={maxPrice} onChange={(e) => updateMinRange(e)} />
+                <input type="range" min="1" max="100000" value={minRange} onChange={(e) => updateMinRange(e)} />
                 <p>{minRange}</p>
                 <br />
                 <label>Max Price</label>
-                <input type="range" min="1" max="100000" value={maxRange} ref={maxPrice} onChange={(e) => updateMaxRange(e)} />
+                <input type="range" min="1" max="100000" value={maxRange} onChange={(e) => updateMaxRange(e)} />
                 <p>{maxRange}</p>
             </div>
 
-            <button>Apply</button>
+            <button onClick={()=>filterByRange(minRange, maxRange)}>Apply</button>
           
         </div>
     )

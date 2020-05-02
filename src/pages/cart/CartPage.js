@@ -8,15 +8,13 @@ import Header from '../../components/header/Header.Component';
 
 
 const Cart = ({ cartCount, cartItems, increaseCount, decreaseCount, removeItem }) => {
-    console.log("tunniiii...", cartCount, cartItems)
 
     let discount = 0;
     let actual = 0;
 
     let repeatItem = {};
 
-        cartItems.forEach((i, idx) => {
-        console.log("moni....", i);
+    cartItems.forEach((i, idx) => {
         discount = ((i.price.display - i.price.actual) * cartCount) + discount;
         actual = (i.price.display * cartCount) + actual;
     });
@@ -71,6 +69,9 @@ const Cart = ({ cartCount, cartItems, increaseCount, decreaseCount, removeItem }
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="footer">
+                <p>@Copyright</p>
             </div>
         </React.Fragment>
     );

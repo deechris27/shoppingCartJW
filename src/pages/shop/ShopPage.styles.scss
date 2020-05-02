@@ -29,7 +29,7 @@
 
       button {
         border: none;
-        background-color: #4c8cf7;
+        background-color: rgb(41, 41, 206);
         color: #fff;
         padding: 8px 32px;
         border-radius: 20px;
@@ -45,4 +45,17 @@
       padding: 12px;
 
     }
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(41, 41, 206);
+  color: white;
+  text-align: center;
+  p{
+    margin-top: 5px;
+  }
 }

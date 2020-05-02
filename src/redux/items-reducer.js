@@ -1,10 +1,13 @@
 import {CART_DATA} from '../pages/shop/CartData';
-import {updateItems} from './actions/updateItems';
+import {updateItems} from './actions/updateActions';
+import {sortPriceLowHigh, sortPriceHighLow, sortByDiscount} from './actions/sortActions';
+import {applyRangeFilter} from './actions/filterActions';
 
+const items = CART_DATA.items;
 const initialState = {
      count: 0,
      cart: [],
-     CART_DATA
+     items
 }
 
 const ItemsReducer = (state=initialState, action)=> {
@@ -13,14 +16,14 @@ const ItemsReducer = (state=initialState, action)=> {
              const newCart = state.cart;
              return {
                  ...state,
-                 cart:  [...newCart, state.CART_DATA.items[action.payload]],
+                 cart:  [...newCart, state.items[action.payload]],
                  count: state.count + 1
              }
           case 'SEARCH':
-              const newItems = state.CART_DATA.items.filter(item => item.name.toLowerCase().includes(action.payload));
+              const newItems = state.items.filter(item => item.name.toLowerCase().includes(action.payload));
               return {
                   ...state,
-                  CART_DATA: state.CART_DATA
+                  items: newItems
               }
           case 'INCREASE':
               return {
@@ -36,6 +39,26 @@ const ItemsReducer = (state=initialState, action)=> {
               return {
                   ...state,
                   cart: [...updateItems(state, action.payload)]
+              }
+          case 'HIGH_TO_LOW':
+              return {
+                  ...state,
+                  items: [...sortPriceHighLow(state)]
+              }
+          case 'LOW_TO_HIGH':
+              return {
+                  ...state,
+                  items: [...sortPriceLowHigh(state)]
+              }
+          case 'DISCOUNT':
+              return{
+                  ...state,
+                  items: [...sortByDiscount(state)]
+              }
+          case 'RANGE_FILTER':
+              return {
+                  ...state,
+                  items: [...applyRangeFilter(state, action.payload)]
               }
          default:
              return state;
