@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --hot --port 4000",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "deploy": "gh-pages -d dist"
   },
+  "homepage": "https://deechris27.github.io/shoppingcart_jw/",
   "author": "Deepak <dd43030@gmail.com> (http://tidbit.c.la/)",
   "license": "MIT",
   "dependencies": {

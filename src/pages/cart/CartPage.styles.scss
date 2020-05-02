@@ -4,8 +4,7 @@
 
   .cart-wrapper {
     padding: 16px;
-    max-width: 1024px;
-    margin: auto;
+    margin-bottom: 25px;
 
     .cart-list {
       display: flex;
@@ -117,4 +116,8 @@
     p{
       margin-top: 5px;
     }
+  }
+
+  .fa-plus, .fa-minus{
+    margin-top: 7px;
   }

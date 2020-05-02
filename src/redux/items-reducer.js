@@ -1,5 +1,5 @@
 import {CART_DATA} from '../pages/shop/CartData';
-import {updateItems} from './actions/updateActions';
+import {updateItems, decreaseItems, increaseItems} from './actions/updateActions';
 import {sortPriceLowHigh, sortPriceHighLow, sortByDiscount} from './actions/sortActions';
 import {applyRangeFilter} from './actions/filterActions';
 
@@ -28,12 +28,12 @@ const ItemsReducer = (state=initialState, action)=> {
           case 'INCREASE':
               return {
                   ...state,
-                  count: state.count + 1
+                  cart: [...increaseItems(state, action.payload)]
               }
           case 'DECREASE':
               return {
                   ...state,
-                  count: count > 1 ? state.count - 1 : updateItems(state, action.payload)
+                  cart: [...decreaseItems(state, action.payload)]
               }
           case 'REMOVE_ITEM':
               return {

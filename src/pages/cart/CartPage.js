@@ -12,9 +12,12 @@ const Cart = ({ cartCount, cartItems, increaseCount, decreaseCount, removeItem }
     let discount = 0;
     let actual = 0;
 
-    let repeatItem = {};
+    let itemCount;
 
     cartItems.forEach((i, idx) => {
+        itemCount = cartItems.reduce(function(acc, item) {
+            return acc + (item === i);
+        }, 0);
         discount = ((i.price.display - i.price.actual) * cartCount) + discount;
         actual = (i.price.display * cartCount) + actual;
     });
@@ -42,9 +45,9 @@ const Cart = ({ cartCount, cartItems, increaseCount, decreaseCount, removeItem }
                                                 </div>
                                             </div>
                                             <div className="item-count">
-                                                <p onClick={() => decreaseCount(index)}><FontAwesomeIcon icon={faMinus} /></p>
-                                                <input readOnly value={cartItems.length} />
-                                                <p onClick={() => increaseCount(index)}><FontAwesomeIcon icon={faPlus} /></p>
+                                                <p onClick={() => decreaseCount(index)} className="fa-plus"><FontAwesomeIcon icon={faMinus} /></p>
+                                                <input readOnly value={itemCount} />
+                                                <p onClick={() => increaseCount(index)} className="fa-minus"><FontAwesomeIcon icon={faPlus} /></p>
                                             </div>
                                             <button onClick={() => removeItem(index)}>Remove</button>
                                         </div>
